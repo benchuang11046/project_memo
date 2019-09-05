@@ -1,0 +1,12 @@
+---
+applications:
+- name: APP_NAME-GIT_VERSION
+  hosts:
+  - APP_NAME-ROUTER_VERSION
+  buildpack: python_buildpack_offline
+  memory: 2048M
+  disk_quota: 2048M
+  env:
+    ENV_TEMP: value
+  services:
+  - MONGO_INSTANCE

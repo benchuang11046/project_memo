@@ -1,0 +1,10 @@
+---
+applications:
+- name: vis-backend
+  memory: 2048M
+  disk_quota: 2048M
+  docker:
+    image: nexus-docker-registry.arfa.wise-paas.com/vis/backend
+    username: docker-admin
+  env:
+    ENV_TEMP
