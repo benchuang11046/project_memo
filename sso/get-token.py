@@ -1,0 +1,20 @@
+import requests
+
+sso_endpoint = 'https://portal-sso.wise-paas.com/v2.0'
+username = ''
+password = ''
+
+payload = {'username': username, 'password': password}
+
+path = '{}/auth/native'.format(sso_endpoint)
+resp = requests.post(path, json=payload)
+
+if resp.status_code == 200:
+    resp = resp.json()
+    tokenType = resp['tokenType']
+    accessToken = resp['accessToken']
+    token = '{} {}'.format(tokenType, accessToken)
+    print(token)
+    # [Out ] Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJ3aXNlcGFhcyIsImlhdCI6MTU2OTI5MDgwNiwiZXhwIjoxNTY5Mjk0NDA2LCJ1c2VySWQiOiI3OTQ0OGM4Mi1iYmYzLTQyNGEtYWZhMC01OWM3NjI0ODA3N2YiLCJ1YWFJZCI6ImUxZDJkYWM0LWIwYmItNDg4Yi04OGVmLWNhMTBmOGY5M2I0OCIsImNyZWF0aW9uVGltZSI6MTU1NTU1MDkwMzAwMCwibGFzdE1vZGlmaWVkVGltZSI6MTU2OTIzMzc3NjAwMCwidXNlcm5hbWUiOiJCZW4yMDE5LkNodWFuZ0BhZHZhbnRlY2guY29tLnR3IiwiZmlyc3ROYW1lIjoiQmVuIiwibGFzdE5hbWUiOiJDaHVhbmciLCJjb3VudHJ5IjoiVFciLCJyb2xlIjoidGVuYW50IiwiZ3JvdXBzIjpbImEwMTMwNmRiLTZjN2YtNDVjNS1hZDIxLWZkOWJjYzViYTQ4NSIsIjZjMDcxM2RkLTNlNzktNGRlMC04Y2Q0LWI4NmQ1NGQyZjQ5ZiIsImJlM2Q1NWM5LTAxMGMtNDIxYy04MGNiLTNkOWZmM2QyMThkMCIsIkJlbjIwMTkuQ2h1YW5nQGFkdmFudGVjaC5jb20udHciXSwiY2ZTY29wZXMiOlt7Imd1aWQiOiJhMDEzMDZkYi02YzdmLTQ1YzUtYWQyMS1mZDliY2M1YmE0ODUiLCJzc29fcm9sZSI6InRlbmFudCIsInNwYWNlcyI6WyIqIl19LHsiZ3VpZCI6IjZjMDcxM2RkLTNlNzktNGRlMC04Y2Q0LWI4NmQ1NGQyZjQ5ZiIsInNzb19yb2xlIjoiZGV2ZWxvcGVyIiwic3BhY2VzIjpbIjY3NjllYjkwLThkMTctNDQzYS04NGRhLWVhZTAzODc2MjJhYSJdfSx7Imd1aWQiOiJiZTNkNTVjOS0wMTBjLTQyMWMtODBjYi0zZDlmZjNkMjE4ZDAiLCJzc29fcm9sZSI6InRlbmFudCIsInNwYWNlcyI6WyIqIl19XSwic2NvcGVzIjpbImRhc2hib2FyZC1ncmFmYW5hLWVuc2Fhcy1oay0xNTE3Mjk1NDQ0NDg5LlZpZXdlciJdLCJzdGF0dXMiOiJhY3RpdmUiLCJvcmlnaW4iOiJTU08iLCJvdmVyUGFkZGluZyI6ZmFsc2UsInN5c3RlbSI6ZmFsc2UsInJlZnJlc2hUb2tlbiI6ImExYWM5NmFkLThlZWQtNDU1MC1iMzEzLWQxMzFhYmI3ZTFhNSJ9.16NNoblHw8ug1vAt7KoArpfpcSErvHD8LDZUJB-KXnTVapuTHt-AILqZYoiHWjOKt2M-VWmqJk4puyQxRc3hCw
+else:
+    print(resp.status_code, resp.text)
