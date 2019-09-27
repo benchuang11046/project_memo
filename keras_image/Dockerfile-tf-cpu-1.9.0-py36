@@ -1,0 +1,12 @@
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install -y software-properties-common && add-apt-repository -y ppa:deadsnakes/ppa && apt-get update -y && apt-get install -y python3.6 && apt-get install -y curl && curl https://bootstrap.pypa.io/get-pip.py -o /root/get-pip.py && python3.6 /root/get-pip.py && rm /root/get-pip.py 
+
+ENV TENSORFLOW_VERSION=1.9.0
+# For how to run TensorFlow on Hadoop,
+# please refer to https://www.tensorflow.org/deploy/hadoop
+RUN pip3.6 install --default-timeout=100 tensorflow==${TENSORFLOW_VERSION}
+#update and upgrade, install git
+RUN apt-get update && apt-get upgrade -y && apt-get -y install git
+ENV LC_ALL C
+WORKDIR /root
